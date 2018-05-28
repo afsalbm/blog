@@ -5,38 +5,46 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminBlogsController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminBlogs14Controller extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
-	    	# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->table 			   = "blogs";	        
-			$this->title_field         = "id";
-			$this->limit               = 20;
-			$this->orderby             = "id,desc";
-			$this->show_numbering      = FALSE;
-			$this->global_privilege    = FALSE;	        
-			$this->button_table_action = TRUE;   
-			$this->button_action_style = "button_icon";     
-			$this->button_add          = TRUE;
-			$this->button_delete       = TRUE;
-			$this->button_edit         = TRUE;
-			$this->button_detail       = TRUE;
-			$this->button_show         = TRUE;
-			$this->button_filter       = TRUE;        
-			$this->button_export       = FALSE;	        
-			$this->button_import       = FALSE;
-			$this->button_bulk_action  = TRUE;	
-			$this->sidebar_mode		   = "normal"; //normal,mini,collapse,collapse-mini
-			# END CONFIGURATION DO NOT REMOVE THIS LINE						      
+
+			# START CONFIGURATION DO NOT REMOVE THIS LINE
+			$this->title_field = "title";
+			$this->limit = "20";
+			$this->orderby = "id,desc";
+			$this->global_privilege = false;
+			$this->button_table_action = true;
+			$this->button_bulk_action = true;
+			$this->button_action_style = "button_icon";
+			$this->button_add = true;
+			$this->button_edit = true;
+			$this->button_delete = true;
+			$this->button_detail = true;
+			$this->button_show = true;
+			$this->button_filter = true;
+			$this->button_import = false;
+			$this->button_export = false;
+			$this->table = "blogs";
+			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
-	        $this->col = [];
-	
+			$this->col = [];
+			$this->col[] = ["label"=>"Title","name"=>"title"];
+			$this->col[] = ["label"=>"Description","name"=>"description"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
-			# START FORM DO NOT REMOVE THIS LINE
-		$this->form = [];
 
-			# END FORM DO NOT REMOVE THIS LINE     
+			# START FORM DO NOT REMOVE THIS LINE
+			$this->form = [];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			# END FORM DO NOT REMOVE THIS LINE
+
+			# OLD START FORM
+			//$this->form = [];
+			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			//$this->form[] = ['label'=>'Description','name'=>'description','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			# OLD END FORM
 
 			/* 
 	        | ---------------------------------------------------------------------- 
